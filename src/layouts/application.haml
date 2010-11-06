@@ -1,0 +1,84 @@
+- @site_name = "FreeSocialEvents.com"
+- @title_delimiter = " | "
+- @page_description = @site_name
+- @page_h1 = "Welcome to #{@site_name}!"
+- @meta_description = "Everyone loves FREE, Everyone loves great EVENTS! Your exclusive source for FREE shows, sporting events, parties, indoor/outdoor adventures, expos, festivals, volunteer opportunities, children's events, and SO MUCH MORE!"
+- @meta_keywords    = "events, shows, sporting events, parties, indoor/outdoor adventures, expos, festivals, volunteer opportunities, children's events"
+- @google_site_verification_code = "S9uSQacmhIf139euQs-jmvyY-0_w_I9h6PVjaTNKhzQ"
+- @twitter_url = "http://twitter.com/#!/freesocialevent"
+- @facebook_url = "http://www.facebook.com/pages/Free-Social-Events-New-York-City-area-/163572896997199"
+- @mailto_url = "mailto: contact at freesocialevents dot com"
+!!!
+%html
+  %head
+    %meta{:"http-equiv" => "Content-Type", :content => "text/html; CHARSET=utf-8"}/
+    %meta{:name => "google-site-verification", :content => @google_site_verification_code }/
+    %title= full_page_title
+    %meta{:name => "description", :content => @meta_description}
+    %meta{:name => "keywords", :content => @meta_keywords}
+
+    %link{:href => "//fonts.googleapis.com/css?family=Droid+Sans:regular,bold&subset=latin", :rel => "stylesheet", :type => "text/css"}/
+    = stylesheets :screen, :media => 'screen, projection'
+    = stylesheets :print, :media => 'print'
+    /[if lt IE 8]
+      = stylesheets :ie, :media => 'screen, projection'
+
+    = javascripts 'jquery-1.4.2.min', 'jquery.validate.min', 'application'
+
+  %body{:id => @body_id, :class => @body_class}
+    #header
+      #welcome
+        %img{:src => '/images/welcome.png'}
+      #title
+        %h1= @site_name
+
+      #intro
+        %div
+          = partial 'intro'
+
+    #content
+      #left
+        #news
+          %h2 Latest News
+          #twitter
+        #contact
+          %a{:href => @mailto_url, :rel => 'email', :title => 'Contact Us', :class => 'contact-us'} 
+            Click here to contact us!
+
+      #main
+        = yield
+
+      #right
+        #social
+          %h2 Follow us on Facebook and Twitter
+          #facebook
+            %a{:href => @facebook_url, :rel => 'external', :title => 'Visit us on Facebook', :class => 'facebook'} Visit us on Facebook
+          #twitter
+            %a{:href => @twitter_url, :rel => 'external', :title => 'Follow us on Twitter', :class => 'twitter'} Follow us on Twitter
+        #e9
+          %a{:href => "http://www.e9digital.com", :rel => 'external', :title => 'Web Design by e9digital'} 
+            Web Design by e9digital
+
+    #scripts
+      = javascripts "http://widgets.twimg.com/j/2/widget.js"
+      :javascript
+        new TWTR.Widget({
+          id: 'twitter',
+          version: 2,
+          type: 'profile',
+          rpp: 3,
+          interval: 2000,
+          width: 300,
+          height: 250,
+          theme: { shell: { background: '#feffe1', color: '#aa0000' }, tweets: { background: '#ffffff', color: '#000000', links: '#aa0000' } },
+          features: { scrollbar: false, loop: false, live: true, hashtags: true, timestamp: true, avatars: true, behavior: 'default' }
+        }).render().setUser('freesocialevent').start();
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19530301-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
