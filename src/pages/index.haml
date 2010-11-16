@@ -1,12 +1,12 @@
-- @body_class = "home"
+- @body_class  = "home"
+- @page_title  = "Welcome!"
 - @form_action = "/cgi-bin/post.cgi"
-- @page_title = "Welcome!"
 
 %form{:action => @form_action, :method => 'POST', :id => 'user_input_form'}
   .box-text
     %h2 Register for Updates
     Would you like to know when
-    %span.highlight= @site_name
+    %span.highlight FreeSocialEvents.com
     launches in your area?  Register for updates and get a
     <strong>FREE</strong> Premium Membership for 30 Days.
 
